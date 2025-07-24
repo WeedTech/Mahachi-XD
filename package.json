@@ -1,72 +1,39 @@
 {
   "name": "mahachi-xd",
   "version": "1.0.0",
-  "description": "🔥 made with ♥️ by Jaden x Weed Tech.",
+  "description": "💥 MAHACHI-XD - Advanced Multi-Plugin WhatsApp Bot | Powered by WeedTech",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js",
-    "render": "npm run start",
-    "termux": "node index.js",
-    "deploy": "pm2 start ecosystem.config.js",
-    "vercel-build": "npm install && node index.js"
+    "start": "node .",
+    "dev": "nodemon .",
+    "lint": "eslint .",
+    "deploy": "pm2 start ecosystem.config.js"
   },
   "keywords": [
-    "whatsapp",
+    "whatsapp-bot",
     "baileys",
     "mahachi-xd",
-    "bot",
-    "whatsapp-bot",
-    "nodejs",
-    "ai",
-    "xvideos",
-    "nsfw",
-    "group-tools",
+    "multi-plugin",
     "termux",
-    "render",
     "railway",
-    "vercel",
-    "deepseek",
-    "chatgpt",
-    "apk",
-    "video",
-    "music",
-    "autobot"
+    "render",
+    "vercel"
   ],
-  "author": "Jaden Afrix & WEED TECH",
+  "author": "WeedTech, Jaden Afrix",
   "license": "MIT",
   "dependencies": {
-    "@whiskeysockets/baileys": "^6.7.0",
-    "pino": "^8.0.0",
-    "dotenv": "^16.4.5",
-    "moment-timezone": "^0.5.45",
+    "@whiskeysockets/baileys": "^6.6.0",
+    "axios": "^1.6.0",
     "chalk": "^5.3.0",
-    "axios": "^1.6.8",
+    "fs-extra": "^11.1.1",
+    "moment-timezone": "^0.5.43",
     "node-fetch": "^3.3.2",
-    "form-data": "^4.0.0",
-    "cheerio": "^1.0.0-rc.12",
-    "file-type": "^18.0.0",
-    "fs-extra": "^11.2.0",
-    "image-to-base64": "^2.3.0",
-    "mimetype": "^1.0.11",
-    "mime-types": "^2.1.35",
-    "performance-now": "^2.1.0",
-    "speed-test": "^2.2.0",
-    "yargs": "^17.7.2"
+    "pino": "^8.15.0",
+    "qrcode-terminal": "^0.12.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.0",
+    "nodemon": "^3.0.2",
+    "eslint": "^8.53.0",
     "pm2": "^5.3.0"
-  },
-  "engines": {
-    "node": ">=18.0.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/WeedTech/Mahachi-XD.git"
-  },
-  "bugs": {
-    "url": "https://github.com/WeedTech/Mahachi-XD/issues"
-  },
-  "homepage": "https://github.com/WeedTech/Mahachi-XD#readme"
+  }
 }

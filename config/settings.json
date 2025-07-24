@@ -1,0 +1,21 @@
+{
+  "prefix": ".",
+  "ownerName": "MAHACHI-XD Devs",
+  "owners": [
+    "263784812740",
+    "50939032060"
+  ],
+  "botName": "MAHACHI-XD",
+  "botImage": "https://files.catbox.moe/b6hr8z.jpeg",
+  "footer": "ᴘᴏᴡᴇʀᴇᴅ ʙʏ 𝚆𝙴𝙴𝙳 𝚃𝙴𝙲𝙷 × 𝙸𝚌𝚎𝙵𝚕𝚘𝚠𝚃𝚎𝚌𝚑",
+  "autoRead": false,
+  "antiCall": false,
+  "autoBio": true,
+  "antiDelete": true,
+  "antiViewOnce": true,
+  "alwaysOnline": true,
+  "sessionName": "session",
+  "botVersion": "1.0.0",
+  "commandCooldown": 3,
+  "developerMode": true
+}

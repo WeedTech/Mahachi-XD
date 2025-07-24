@@ -1,81 +1,73 @@
-//*index.js Main bot file made by Jaden Afrix
-//do not copy/paste
-require('dotenv').config();
+// index.js 😌
 
-// Imports
-const { default: makeWASocket, fetchLatestBaileysVersion, useMultiFileAuthState, makeCacheableSignalKeyStore, DisconnectReason } = require('@whiskeysockets/baileys');
-const pino = require('pino');
-const fs = require('fs');
-const path = require('path');
+console.clear()
+const fs = require('fs')
+const path = require('path')
+const chalk = require('chalk')
+const { default: makeWASocket, useMultiFileAuthState, DisconnectReason } = require('@whiskeysockets/baileys')
+const pino = require('pino')
+const { pluginLoader } = require('./core/pluginLoader')
+const { handleMessage } = require('./core/handler')
+const { serialize } = require('./lib/format')
+const { banner } = require('./lib/tools')
 
-// Core files
-const loadPlugins = require('./core/pluginLoader');
-const handleMessage = require('./core/handler');
+console.log(chalk.green(banner)) // ASCII ART BANNER
 
-// Global config
-const prefix = process.env.PREFIX || '.';
-const botName = process.env.BOT_NAME || 'MAHACHI-XD';
+// ASCII Art Logo
+console.log(chalk.cyan(`
+╭━━━┳╮╱╱╭┳━╮╭━┳╮╱╱╭╮  ╭━━━┳━━━┳╮╱╱╭╮
+┃╭━╮┃╰╮╭╯┃┃╰╯┃┃┃╱╱┃┃  ┃╭━╮┃╭━╮┃┃╱╱┃┃
+┃┃╱╰╋╮╰╯╭┫╭╮╭╮┣┻━┳┫┃╭┳┫╰━━┫┃╱┃┃┃╱╱┃┃
+┃┃╱╭╯╰╮╭╯┃┃┃┃┃┃╭╮┣┫╰╯╯╰━━╮┃┃╱┃┃┃╱╭┫┃╭┳━━┳━╮
+┃╰━╯┃╱┃┃╱┃┃┃┃┃┃╭╮┣┫╭╮╮┃╰━╯┃╰━╯┃╰━╯┃╰╯┃╭╮┃╭╯
+╰━━━╯╱╰╯╱╰╯╰╯╰┻╯╰┻┻╯╰╯╰━━━┻━━━┻━━━┻━━┻╯╰┻╯
+             MAHACHI-XD WHATSAPP BOT
+             Powered by WEED × JADEN × IceFlowTech
+`))
 
-// Logger
-const logger = pino({ level: 'silent' });
-
-// Initialize session storage
-const authFolder = './auth';
-
-// Create WA connection
-async function startBot() {
-  const { state, saveCreds } = await useMultiFileAuthState(authFolder);
-  const { version, isLatest } = await fetchLatestBaileysVersion();
-  console.log(`[📦] Using Baileys v${version.join('.')}, Latest: ${isLatest}`);
-
+// Main bot start function
+const startMahachiXD = async () => {
+  const { state, saveCreds } = await useMultiFileAuthState('./session')
+  
   const sock = makeWASocket({
-    version,
-    logger,
+    logger: pino({ level: 'silent' }),
     printQRInTerminal: true,
-    auth: {
-      creds: state.creds,
-      keys: makeCacheableSignalKeyStore(state.keys, logger),
-    },
-    browser: ['MAHACHI-XD', 'Safari', '3.0'],
-    syncFullHistory: false,
-  });
-
-  // Store creds
-  sock.ev.on('creds.update', saveCreds);
-
-  // Reconnect on disconnect
-  sock.ev.on('connection.update', async (update) => {
-    const { connection, lastDisconnect } = update;
-
-    if (connection === 'close') {
-      const reason = new Boom(lastDisconnect?.error)?.output?.statusCode;
-      if (reason === DisconnectReason.loggedOut) {
-        console.log('[❌] Bot logged out. Please delete auth folder and scan again.');
-      } else {
-        console.log('[🔄] Reconnecting...');
-        startBot();
-      }
-    } else if (connection === 'open') {
-      console.log(`[✅] ${botName} is now connected and running!`);
-    }
-  });
-
-  // Load plugins
-  await loadPlugins();
-
-  // Message handler
+    auth: state,
+    browser: ['MAHACHI-XD', 'Chrome', '1.0.0']
+  })
+  
+  // Load all plugins
+  pluginLoader()
+  
+  // On new message
   sock.ev.on('messages.upsert', async ({ messages }) => {
-    if (!messages || !messages[0]) return;
-    const msg = messages[0];
     try {
-      await handleMessage(sock, msg);
+      const msg = messages[0]
+      if (!msg.message || msg.key && msg.key.remoteJid === 'status@broadcast') return
+      let m = await serialize(sock, msg)
+      handleMessage(sock, m)
     } catch (err) {
-      console.error('[❌] Handler Error:', err);
+      console.error('❌ Message Error:', err)
     }
-  });
+  })
+  
+  // Handle credentials update
+  sock.ev.on('creds.update', saveCreds)
+  
+  // Handle disconnection
+  sock.ev.on('connection.update', async (update) => {
+    const { connection, lastDisconnect } = update
+    if (connection === 'close') {
+      const reason = new Boom(lastDisconnect?.error)?.output?.statusCode
+      if (reason === DisconnectReason.loggedOut) {
+        console.log(chalk.red('⛔ Logged out. Please delete session folder and restart.'))
+        process.exit()
+      } else {
+        console.log(chalk.yellow('🔁 Reconnecting...'))
+        startMahachiXD()
+      }
+    }
+  })
 }
 
-// Start the bot
-startBot().catch((err) => {
-  console.error('[❌] Startup Error:', err);
-});
+startMahachiXD()
