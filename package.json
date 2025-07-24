@@ -1,0 +1,72 @@
+{
+  "name": "mahachi-xd",
+  "version": "1.0.0",
+  "description": "🔥 made with ♥️ by Jaden x Weed Tech.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "render": "npm run start",
+    "termux": "node index.js",
+    "deploy": "pm2 start ecosystem.config.js",
+    "vercel-build": "npm install && node index.js"
+  },
+  "keywords": [
+    "whatsapp",
+    "baileys",
+    "mahachi-xd",
+    "bot",
+    "whatsapp-bot",
+    "nodejs",
+    "ai",
+    "xvideos",
+    "nsfw",
+    "group-tools",
+    "termux",
+    "render",
+    "railway",
+    "vercel",
+    "deepseek",
+    "chatgpt",
+    "apk",
+    "video",
+    "music",
+    "autobot"
+  ],
+  "author": "Jaden Afrix & WEED TECH",
+  "license": "MIT",
+  "dependencies": {
+    "@whiskeysockets/baileys": "^6.7.0",
+    "pino": "^8.0.0",
+    "dotenv": "^16.4.5",
+    "moment-timezone": "^0.5.45",
+    "chalk": "^5.3.0",
+    "axios": "^1.6.8",
+    "node-fetch": "^3.3.2",
+    "form-data": "^4.0.0",
+    "cheerio": "^1.0.0-rc.12",
+    "file-type": "^18.0.0",
+    "fs-extra": "^11.2.0",
+    "image-to-base64": "^2.3.0",
+    "mimetype": "^1.0.11",
+    "mime-types": "^2.1.35",
+    "performance-now": "^2.1.0",
+    "speed-test": "^2.2.0",
+    "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0",
+    "pm2": "^5.3.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WeedTech/Mahachi-XD.git"
+  },
+  "bugs": {
+    "url": "https://github.com/WeedTech/Mahachi-XD/issues"
+  },
+  "homepage": "https://github.com/WeedTech/Mahachi-XD#readme"
+}
