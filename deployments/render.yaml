@@ -1,0 +1,71 @@
+services:
+  - type: web
+    name: mahachi-xd-bot
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NUMBER
+        sync: false
+      - key: BASE_URL
+        sync: false
+      - key: PORT
+        value: 3000
+      - key: LOG_LEVEL
+        value: info
+      - key: MAX_RECONNECT_ATTEMPTS
+        value: 5
+      - key: RECONNECT_INTERVAL
+        value: 5000
+    healthCheckPath: /health
+    healthCheckIntervalSeconds: 60
+    restartPolicyType: always
+    restartPolicyMaxRetries: 10
+    autoDeploy: true
+    branch: main
+    region: ohio
+    numInstances: 1
+    instanceSize: free
+
+  - type: worker
+    name: mahachi-xd-worker
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node worker.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: WORKER_MODE
+        value: true
+    autoDeploy: true
+    branch: main
+    region: ohio
+    numInstances: 1
+    instanceSize: free
+
+envVar:
+  - key: SESSION_SECRET
+    sync: false
+  - key: DATABASE_URL
+    sync: false
+
+cron:
+  - name: daily-cleanup
+    schedule: "0 0 * * *"
+    command: node scripts/cleanup.js
+    plan: free
+
+disk:
+  - name: session-storage
+    mountPath: /opt/render/project/src/session
+    sizeGB: 1
+
+autoscaling:
+  - minInstances: 1
+  - maxInstances: 3
+  - cooldownPeriodSeconds: 300
+  - targetCPUUtilization: 70

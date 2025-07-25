@@ -2,11 +2,15 @@
   {
     "name": "Jaden Afrix",
     "number": "263784812740",
-    "role": "creator"
+    "role": "creator",
+    "permissions": ["all"],
+    "active": true
   },
   {
     "name": "WEED TECH",
     "number": "50939032060",
-    "role": "owner"
+    "role": "owner",
+    "permissions": ["admin", "moderate", "broadcast"],
+    "active": true
   }
- ] 
+]

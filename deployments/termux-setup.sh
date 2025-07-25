@@ -3,13 +3,13 @@
 clear
 
 cat <<"EOF"
- __  __       _    _           _     __  __  ____  _     
-|  \/  | ___ | | _(_)_ __ ___ | |__ |  \/  |/ ___|| |__  
-| |\/| |/ _ \| |/ / | '_ ` _ \| '_ \| |\/| | |  _ | '_ \ 
-| |  | | (_) |   <| | | | | | | |_) | |  | | |_| || | | |
-|_|  |_|\___/|_|\_\_|_| |_| |_|_.__/|_|  |_|\____||_| |_|
-                                                        
-           MAHACHI-XD Bot Termux Setup Script
+  __  __           _     _  _  __  __ 
+ |  \/  | __ _ ___| |__ | || ||  \/  |
+ | |\/| |/ _` / __| '_ \| || || |\/| |
+ | |  | | (_| \__ \ | | |__   _| |  | |
+ |_|  |_|\__,_|___/_| |_|  |_||_|  |_|
+                                     
+           MAHACHI-XD Bot Setup
 EOF
 
 echo ""
@@ -36,7 +36,7 @@ fi
 # Clone or update repo
 if [ ! -d "MAHACHI-XD" ]; then
   echo "Cloning MAHACHI-XD repo..."
-  git clone https://github.com/WeedTech/Mahachi-XD.git
+  git clone https://github.com/WeedTech/Mahachi-XD.git 
 else
   echo "MAHACHI-XD directory exists, updating..."
   cd MAHACHI-XD && git pull origin main && cd ..

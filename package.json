@@ -7,7 +7,16 @@
     "start": "node .",
     "dev": "nodemon .",
     "lint": "eslint .",
-    "deploy": "pm2 start ecosystem.config.js"
+    "lint:fix": "eslint . --fix",
+    "deploy": "pm2 start ecosystem.config.js",
+    "deploy:render": "node .",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rm -rf session/",
+    "reset": "npm run clean && npm start",
+    "logs": "pm2 logs mahachi-xd",
+    "status": "pm2 status",
+    "stop": "pm2 stop mahachi-xd",
+    "restart": "pm2 restart mahachi-xd"
   },
   "keywords": [
     "whatsapp-bot",
@@ -17,11 +26,19 @@
     "termux",
     "railway",
     "render",
-    "vercel"
+    "vercel",
+    "whatsapp",
+    "bot",
+    "automation"
   ],
   "author": "WeedTech, Jaden Afrix",
   "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
   "dependencies": {
+    "@hapi/boom": "^10.0.1",
     "@whiskeysockets/baileys": "^6.6.0",
     "axios": "^1.6.0",
     "chalk": "^5.3.0",
@@ -29,11 +46,44 @@
     "moment-timezone": "^0.5.43",
     "node-fetch": "^3.3.2",
     "pino": "^8.15.0",
-    "qrcode-terminal": "^0.12.0"
+    "pino-pretty": "^10.2.0",
+    "qrcode-terminal": "^0.12.0",
+    "sharp": "^0.32.6",
+    "fluent-ffmpeg": "^2.1.2",
+    "mongoose": "^7.5.0",
+    "lowdb": "^7.0.1",
+    "jimp": "^0.22.10",
+    "pdfkit": "^0.13.0",
+    "form-data": "^4.0.0",
+    "cheerio": "^1.0.0-rc.12",
+    "yt-search": "^2.10.4",
+    "ytdl-core": "^4.11.5"
   },
   "devDependencies": {
     "nodemon": "^3.0.2",
     "eslint": "^8.53.0",
     "pm2": "^5.3.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WeedTech/Mahachi-XD.git"
+  },
+  "bugs": {
+    "url": "https://github.com/WeedTech/Mahachi-XD/issues"
+  },
+  "homepage": "https://github.com/WeedTech/Mahachi-XD#readme",
+  "directories": {
+    "lib": "lib",
+    "core": "core",
+    "plugins": "plugins"
+  },
+  "preferGlobal": true,
+  "files": [
+    "index.js",
+    "core/",
+    "lib/",
+    "plugins/",
+    "session/",
+    "ecosystem.config.js"
+  ]
 }
