@@ -14,7 +14,9 @@ const {
   useMultiFileAuthState,
   DisconnectReason,
   fetchLatestBaileysVersion,
-const { makeInMemoryStore } = require("@adiwajshing/baileys")
+  makeInMemoryStore,
+  makeCacheableSignalKeyStore
+} = require('@whiskeysockets/baileys)
 
 // Custom Modules
 const { pluginLoader } = require('./core/pluginLoader')
