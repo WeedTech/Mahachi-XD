@@ -16,7 +16,7 @@ const {
   fetchLatestBaileysVersion,
   makeInMemoryStore,
   makeCacheableSignalKeyStore
-} = require('@whiskeysockets/baileys)
+} = require('@whiskeysockets/baileys')
 
 // Custom Modules
 const { pluginLoader } = require('./core/pluginLoader')
