@@ -14,7 +14,6 @@ const {
   useMultiFileAuthState,
   DisconnectReason,
   fetchLatestBaileysVersion,
-  makeInMemoryStore,
   makeCacheableSignalKeyStore
 } = require('@whiskeysockets/baileys')
 
@@ -23,11 +22,6 @@ const { pluginLoader } = require('./core/pluginLoader')
 const { handleMessage } = require('./core/handler')
 const { serialize } = require('./lib/format')
 const { banner } = require('./lib/tools')
-
-// Global Store (Optional - for message history)
-const store = makeInMemoryStore({
-  logger: pino({ level: 'silent' })
-})
 
 // ASCII Art Banner
 console.log(chalk.green(banner))
@@ -302,9 +296,6 @@ const startMahachiXD = async () => {
         return message
       }
     })
-    
-    // Initialize store
-    store.bind(sock.ev)
     
     // Load plugins
     await loadPlugins()
