@@ -33,16 +33,16 @@ const store = makeInMemoryStore({
 console.log(chalk.green(banner))
 
 // Enhanced ASCII Art Logo
-console.log(chalk.cyan(`
-╭━━━┳╮╱╱╭┳━╮╭━┳╮╱╱╭╮  ╭━━━┳━━━┳╮╱╱╭╮
+console.log(chalk.cyan(
+`╭━━━┳╮╱╱╭┳━╮╭━┳╮╱╱╭╮  ╭━━━┳━━━┳╮╱╱╭╮
 ┃╭━╮┃╰╮╭╯┃┃╰╯┃┃┃╱╱┃┃  ┃╭━╮┃╭━╮┃┃╱╱┃┃
 ┃┃╱╰╋╮╰╯╭┫╭╮╭╮┣┻━┳┫┃╭┳┫╰━━┫┃╱┃┃┃╱╱┃┃
 ┃┃╱╭╯╰╮╭╯┃┃┃┃┃┃╭╮┣┫╰╯╯╰━━╮┃┃╱┃┃┃╱╭┫┃╭┳━━┳━╮
 ┃╰━╯┃╱┃┃╱┃┃┃┃┃┃╭╮┣┫╭╮╮┃╰━╯┃╰━╯┃╰━╯┃╰╯┃╭╮┃╭╯
-╰━━━╯╱╰╯╱╰╯╰╯╰┻╯╰┻┻╯╰╯╰━━━┻━━━┻━━━┻━━┻╯╰┻╯
+╰━━━╯╱╰╯╱╰╯╰╯╰┻╯╰┻┻╯╰╯╰━━━┻━━━┻━━━┻┻╯╰┻╯
              MAHACHI-XD WHATSAPP BOT
-             Powered by WEED × JADEN × IceFlowTech
-`))
+             Powered by WEED × JADEN × IceFlowTech`
+))
 
 // Bot Configuration
 const CONFIG = {
